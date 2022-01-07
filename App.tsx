@@ -13,7 +13,9 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import { ThemeProvider } from "styled-components/native";
-import theme from "./src/theme";
+
+//@ts-ignore
+import theme from "@theme";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
