@@ -10,7 +10,8 @@
           "@assets/*": [ "./src/assets/*"],
           "@hooks/*": [ "./src/hooks/*"],
           "@utils/*": [ "./src/utils/*"],
-          "@theme/*": ["./src/theme/*"]
+          "@theme/*": ["./src/theme/*"],
+          "@config/*": ["./src/config/*"],
       }
   },
 }
