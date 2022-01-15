@@ -8,13 +8,11 @@ import {
 
 import { Wrapper, Header, Form, Title, Info } from "./styles";
 
-import { collection, addDoc } from "firebase/firestore";
+import firebase from "firebase/compat";
 
 import { useNavigation } from "@react-navigation/native";
 
 import * as yup from "yup";
-
-import { database } from "../../config/firebase";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
@@ -40,16 +38,33 @@ export function SignUp() {
 
       await schema.validate({ name, email, password });
 
-      addDoc(collection(database, "users"), {
-        name,
-        email,
-        password,
-      })
-        .then(() => {
-          Alert.alert("Success", "Registration successful!");
-          navigation.navigate("SignIn");
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((response) => {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(response.user?.uid)
+            .set({ name, email })
+            .then(() => {
+              Alert.alert("Success", "Registration successful!");
+
+              navigation.navigate("SignIn");
+            })
+            .catch(() =>
+              Alert.alert(
+                "Error",
+                "There was an error registering the account, please try again."
+              )
+            );
         })
-        .catch((error) => console.log(error));
+        .catch(() =>
+          Alert.alert(
+            "Error",
+            "There was an error registering the account, please try again."
+          )
+        );
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         Alert.alert("Error", error.message);
