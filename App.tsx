@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 
 import AppLoading from "expo-app-loading";
 
@@ -17,6 +16,9 @@ import { ThemeProvider } from "styled-components/native";
 //@ts-ignore
 import theme from "@theme";
 
+import { Routes } from "./src/routes";
+import { AuthProvider } from "@hooks/auth";
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Poppins_300Light,
@@ -32,9 +34,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <View>
-        <Text>Hello World</Text>
-      </View>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
