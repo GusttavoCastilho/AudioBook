@@ -6,8 +6,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-import { Wrapper, Header, Form, Title, Info } from "./styles";
-
 import firebase from "firebase/compat";
 
 import { useNavigation } from "@react-navigation/native";
@@ -17,7 +15,11 @@ import * as yup from "yup";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
+import { auth } from "@config/firebase";
+
 import LogoSvg from "@assets/logo.svg";
+
+import { Wrapper, Header, Form, Title, Info } from "./styles";
 
 export function SignUp() {
   const [name, setName] = useState("");
@@ -38,8 +40,7 @@ export function SignUp() {
 
       await schema.validate({ name, email, password });
 
-      firebase
-        .auth()
+      auth
         .createUserWithEmailAndPassword(email, password)
         .then((response) => {
           firebase
@@ -69,6 +70,7 @@ export function SignUp() {
       if (error instanceof yup.ValidationError) {
         Alert.alert("Error", error.message);
       } else {
+        console.log(error);
         Alert.alert("Error at register", `${error}`);
       }
     }
@@ -115,7 +117,12 @@ export function SignUp() {
             </Info>
 
             <Button label="Register" fullWidth onPress={handleSubmitUser} />
-            <Button label="Cancel" fullWidth border />
+            <Button
+              label="Cancel"
+              fullWidth
+              border
+              onPress={() => navigation.goBack()}
+            />
           </Form>
         </Wrapper>
       </TouchableWithoutFeedback>

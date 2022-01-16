@@ -12,6 +12,7 @@
           "@utils/*": [ "./src/utils/*"],
           "@theme/*": ["./src/theme/*"],
           "@config/*": ["./src/config/*"],
+          "@routes/*": ["./src/routes/*"]
       }
   },
 }
