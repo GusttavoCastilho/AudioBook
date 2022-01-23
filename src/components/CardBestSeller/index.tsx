@@ -11,7 +11,7 @@ type CardBestSellerProps = {
 export function CardBestSeller({ image, title, company }: CardBestSellerProps) {
   return (
     <Wrapper>
-      <Image source={image} resizeMode="contain" />
+      <Image source={image} accessibilityLabel={title} resizeMode="contain" />
       <Content>
         <Title>{title}</Title>
         <Subtitle>{company}</Subtitle>
