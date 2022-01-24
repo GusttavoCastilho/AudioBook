@@ -18,6 +18,7 @@ import theme from "@theme";
 
 import { Routes } from "./src/routes";
 import { AuthProvider } from "@hooks/auth";
+import { Home } from "@screens/Home";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -35,7 +36,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Routes />
+        <Home />
       </AuthProvider>
     </ThemeProvider>
   );
