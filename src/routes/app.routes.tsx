@@ -1,9 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { OneStep } from "@screens/Onboarding/OneStep";
-import { TwoStep } from "@screens/Onboarding/TwoStep";
-import { ThreeStep } from "@screens/Onboarding/ThreeStep";
+import { Onboarding } from "@screens/Onboarding";
 import { SignIn } from "@screens/SignIn";
 import { SignUp } from "@screens/SignUp";
 import { ForgetPassword } from "@screens/ForgetPassword";
@@ -14,12 +12,10 @@ const { Navigator, Screen } = createNativeStackNavigator();
 export function AppRoutes() {
   return (
     <Navigator
-      initialRouteName="OneStep"
+      initialRouteName="Onboarding"
       screenOptions={{ headerShown: false }}
     >
-      <Screen name="OneStep" component={OneStep} />
-      <Screen name="TwoStep" component={TwoStep} />
-      <Screen name="ThreeStep" component={ThreeStep} />
+      <Screen name="Onboarding" component={Onboarding} />
       <Screen name="SignIn" component={SignIn} />
       <Screen name="SignUp" component={SignUp} />
       <Screen name="ForgetPassword" component={ForgetPassword} />
