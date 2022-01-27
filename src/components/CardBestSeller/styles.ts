@@ -7,7 +7,8 @@ export const Wrapper = styled.TouchableOpacity`
   border-radius: 12px;
 
   flex-direction: row;
-  margin-left: 24px;
+  margin-left: 20px;
+  margin-top: 16px;
 `;
 
 export const Image = styled.Image`
@@ -34,8 +35,14 @@ export const Title = styled.Text`
 export const Subtitle = styled.Text`
   font-size: 12px;
 
+  padding-top: 4px;
+
   ${({ theme }) => css`
     font-family: ${theme.fonts.regular};
     color: ${theme.colors.neutral_60};
   `}
+`;
+
+export const WrapperRating = styled.View`
+  margin-top: 20px;
 `;
