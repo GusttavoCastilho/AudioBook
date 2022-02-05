@@ -16,3 +16,26 @@ export const categories = [
     category: "Drama",
   },
 ];
+
+export const recommendedCategories = [
+  {
+    id: 1,
+    type: "business",
+    title: "Business",
+  },
+  {
+    id: 2,
+    type: "personal",
+    title: "Personal",
+  },
+  {
+    id: 3,
+    type: "music",
+    title: "Music",
+  },
+  {
+    id: 4,
+    type: "photography",
+    title: "Photography",
+  },
+];
