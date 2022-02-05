@@ -1,7 +1,9 @@
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
 
   background-color: ${({ theme }) => theme.colors.white};

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 
 import { useTheme } from "styled-components/native";
 
@@ -7,11 +7,12 @@ import { Feather } from "@expo/vector-icons";
 
 import { Category } from "@components/Category";
 import { CardBestSeller } from "@components/CardBestSeller";
+import { CardBook } from "@components/CardBook";
+
 import { categories } from "@utils/categories";
-import { banner } from "@utils/books";
+import { banner, bestSeller, releases, trending } from "@utils/books";
 
 import LogoFull from "@assets/logo-full.svg";
-import LightMage from "@assets/books/light-mage.png";
 
 import {
   Wrapper,
@@ -86,10 +87,54 @@ export function Home() {
           </TouchableOpacity>
         </BoxText>
 
-        <CardBestSeller
-          image={LightMage}
-          title="Light Mage"
-          company="Laurie Forest"
+        <FlatList
+          data={bestSeller}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <CardBestSeller
+              image={item.image}
+              title={item.title}
+              company={item.company}
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+
+        <BoxText style={{ marginTop: 32 }}>
+          <Text>New Releases</Text>
+          <TouchableOpacity>
+            <TextSeeMore>See more</TextSeeMore>
+          </TouchableOpacity>
+        </BoxText>
+
+        <FlatList
+          data={releases}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <CardBook image={item.image} title={item.title} />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginLeft: 24, marginTop: 16 }}
+        />
+
+        <BoxText style={{ marginTop: 32 }}>
+          <Text>Trending Now</Text>
+          <TouchableOpacity>
+            <TextSeeMore>See more</TextSeeMore>
+          </TouchableOpacity>
+        </BoxText>
+
+        <FlatList
+          data={trending}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <CardBook image={item.image} title={item.title} />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginLeft: 24, marginTop: 16 }}
         />
       </Content>
     </Wrapper>
