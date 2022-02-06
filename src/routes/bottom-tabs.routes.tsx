@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Home } from "@screens/Home";
 import { Search } from "@screens/Search";
+import { Library } from "@screens/Library";
 
 import { useTheme } from "styled-components/native";
 
@@ -44,7 +45,7 @@ export function BottomTabs() {
       />
       <Screen
         name="Library"
-        component={Home}
+        component={Library}
         options={{
           tabBarIcon: () => <LibrarySvg />,
         }}

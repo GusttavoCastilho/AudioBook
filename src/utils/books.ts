@@ -10,6 +10,9 @@ import KidnappersAccomplice from "@assets/books/kidnappers-accomplice.png";
 
 import FireQueen from "@assets/books/fire-queen.png";
 
+import PromisedLand from "@assets/books/promised-land.png";
+import HarryPotter from "@assets/books/harry-potter.png";
+
 export const banner = [
   {
     id: 1,
@@ -74,6 +77,39 @@ export const trending = [
     id: 3,
     image: BlackWitch,
     title: "The Black Witch",
+    author: "Laurie Forest",
+  },
+];
+
+export const myBooks = [
+  {
+    id: 1,
+    image: BlackWitch,
+    title: "The Black Witch",
+    author: "Laurie Forest",
+  },
+  {
+    id: 2,
+    image: PromisedLand,
+    title: "A Promised Land",
+    author: "Barrack Obama",
+  },
+  {
+    id: 3,
+    image: HarryPotter,
+    title: "Harry Potter and the Prisoner of Azkaban",
+    author: "J. K. Rowling",
+  },
+  {
+    id: 4,
+    image: KidnappersAccomplice,
+    title: "The Kidnappers Accomplice",
+    author: "C. J. Archer",
+  },
+  {
+    id: 5,
+    image: LightMage,
+    title: "Light Mage",
     author: "Laurie Forest",
   },
 ];
