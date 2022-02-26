@@ -2,6 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
       "strict": true,
+      "useUnknownInCatchVariables": false,
       "baseUrl": "./",
       "paths": {
           "@src/*": [ "./src/*"],
@@ -12,7 +13,8 @@
           "@utils/*": [ "./src/utils/*"],
           "@theme/*": ["./src/theme/*"],
           "@config/*": ["./src/config/*"],
-          "@routes/*": ["./src/routes/*"]
+          "@routes/*": ["./src/routes/*"],
+          "@services/*": ["./src/services/*"],
       }
   },
 }
