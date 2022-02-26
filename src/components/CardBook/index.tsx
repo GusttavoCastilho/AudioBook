@@ -4,7 +4,7 @@ import { ImageSourcePropType } from "react-native";
 import { Wrapper, Content, Image, Title } from "./styles";
 
 export type CardBookProps = {
-  image: ImageSourcePropType;
+  image: string | ImageSourcePropType;
   title: string;
 };
 
@@ -12,7 +12,10 @@ export function CardBook({ image, title }: CardBookProps) {
   return (
     <Wrapper>
       <Content>
-        <Image source={image} resizeMode="contain" />
+        <Image
+          source={typeof image == "string" ? { uri: image } : image}
+          resizeMode="contain"
+        />
         <Title>{title}</Title>
       </Content>
     </Wrapper>
