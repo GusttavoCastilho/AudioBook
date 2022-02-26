@@ -18,7 +18,9 @@ import theme from "@theme";
 
 import { Routes } from "./src/routes";
 import { AuthProvider } from "@hooks/auth";
-import { Home } from "@screens/Home";
+
+import { Provider } from "react-redux";
+import store from "./src/store";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -35,9 +37,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <Routes />
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </Provider>
     </ThemeProvider>
   );
 }

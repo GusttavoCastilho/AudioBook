@@ -16,6 +16,8 @@ export declare global {
       SignUp: undefined;
       ForgetPassword: ForgetPassword;
       EmailSent: EmailSent;
+      Settings: undefined;
+      Profile: undefined;
     }
   }
 }
