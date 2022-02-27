@@ -1,16 +1,19 @@
 import React from "react";
-import { ImageSourcePropType } from "react-native";
+import {
+  ImageSourcePropType,
+  TouchableWithoutFeedbackProps,
+} from "react-native";
 
 import { Wrapper, Content, Image, Title } from "./styles";
 
 export type CardBookProps = {
   image: string | ImageSourcePropType;
   title: string;
-};
+} & TouchableWithoutFeedbackProps;
 
-export function CardBook({ image, title }: CardBookProps) {
+export function CardBook({ image, title, ...rest }: CardBookProps) {
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <Content>
         <Image
           source={typeof image == "string" ? { uri: image } : image}
