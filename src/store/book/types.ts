@@ -15,7 +15,12 @@ export type Books = {
     readingModes: {
       image: boolean;
     };
+    publishedDate: string;
+    description: string;
+    categories: Array<string>;
+    imageLinks: {
+      smallThumbnail: string;
+      thumbnail: string;
+    };
   };
-  publishedDate: string;
-  description: string;
 };
