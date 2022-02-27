@@ -1,3 +1,5 @@
+import { Books } from "@store/book/types";
+
 export type ForgetPassword = {
   email: string;
 };
@@ -18,6 +20,7 @@ export declare global {
       EmailSent: EmailSent;
       Settings: undefined;
       Profile: undefined;
+      BookDetails: Books;
     }
   }
 }
