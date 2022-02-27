@@ -9,18 +9,19 @@ import {
   searchRequestBook,
   searchSuccessBook,
 } from "./reducers";
-import { Books } from "./types";
 
 function* searchBooks() {
   const { search } = yield select((state: RootState) => state.book);
   try {
-    const { data }: AxiosResponse = yield call(
-      api.get,
-      `/books/v1/volumes?q=${search.text}`
-    );
+    if (search.text.length > 0) {
+      const { data }: AxiosResponse = yield call(
+        api.get,
+        `/books/v1/volumes?q=${search.text}`
+      );
 
-    if (data) {
-      yield put(searchSuccessBook({ books: data.items }));
+      if (data) {
+        yield put(searchSuccessBook({ books: data.items }));
+      }
     }
   } catch (error) {
     yield put(searchFailureBook({ error: error.message }));
