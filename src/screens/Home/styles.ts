@@ -1,5 +1,7 @@
+import { FlatList } from 'react-native'
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
+import { BannerProps } from '.'
 
 export const Wrapper = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -55,7 +57,7 @@ export const CategoriesList = styled.FlatList.attrs({
   margin-bottom: 32px;
 `;
 
-export const BannerList = styled.FlatList.attrs({
+export const BannerList = styled(FlatList as new () => FlatList<BannerProps>).attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })`

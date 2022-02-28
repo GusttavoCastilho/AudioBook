@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity, FlatList } from "react-native";
 
 import { useTheme } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Feather } from "@expo/vector-icons";
 
@@ -31,15 +32,21 @@ type CategoryProps = {
   category: string;
 };
 
+export type BannerProps = {
+  id: number;
+  book: React.ReactNode;
+};
+
 export function Home() {
   const [category] = useState<CategoryProps[]>(categories);
   const [categorySelected, setCaregorySelected] = useState("Art");
   const theme = useTheme();
+  const navigation = useNavigation();
   return (
     <Wrapper>
       <Header>
         <LogoFull />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Feather name="settings" color={theme.colors.primary_50} size={24} />
         </TouchableOpacity>
       </Header>
@@ -74,7 +81,7 @@ export function Home() {
 
         <BannerList
           data={banner}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={(item: BannerProps) => String(item.id)}
           renderItem={({ item }) => (
             <BannerBook resizeMode="contain" source={item.book} />
           )}
@@ -101,7 +108,7 @@ export function Home() {
           showsHorizontalScrollIndicator={false}
         />
 
-        <BoxText style={{ marginTop: 32 }}>
+        <BoxText style={{ marginTop: 12 }}>
           <Text>New Releases</Text>
           <TouchableOpacity>
             <TextSeeMore>See more</TextSeeMore>
@@ -119,7 +126,7 @@ export function Home() {
           style={{ marginLeft: 24, marginTop: 16 }}
         />
 
-        <BoxText style={{ marginTop: 32 }}>
+        <BoxText style={{ marginTop: 12 }}>
           <Text>Trending Now</Text>
           <TouchableOpacity>
             <TextSeeMore>See more</TextSeeMore>
