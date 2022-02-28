@@ -1,10 +1,11 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { useTheme } from "styled-components/native";
-import { useRoute, RouteProp } from "@react-navigation/native";
+import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 
 import { Books } from "@store/book/types";
 
@@ -33,15 +34,18 @@ type ParamList = {
 
 export function BookDetails() {
   const theme = useTheme();
+  const navigation = useNavigation();
   const { params } = useRoute<RouteProp<ParamList, "Books">>();
   return (
     <Wrapper>
       <Header>
-        <Ionicons
-          name="chevron-back"
-          size={24}
-          color={theme.colors.neutral_80}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons
+            name="chevron-back"
+            size={24}
+            color={theme.colors.neutral_80}
+          />
+        </TouchableOpacity>
         <HeaderTitle>{params?.volumeInfo.title}</HeaderTitle>
         <MaterialCommunityIcons
           name="dots-horizontal"

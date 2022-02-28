@@ -19,6 +19,7 @@ export const Title = styled.Text`
   font-size: 16px;
 
   padding-top: 12px;
+  padding-bottom: 20px;
 
   ${({ theme }) => css`
     font-family: ${theme.fonts.medium};
