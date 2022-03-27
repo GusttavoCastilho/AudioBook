@@ -21,6 +21,7 @@ import { recommendedCategories } from "@utils/categories";
 import { getCategoryIcon } from "@utils/getCategoryIcon";
 
 import {
+  ActivityIndicatorBooks,
   Wrapper,
   Header,
   Content,
@@ -51,7 +52,7 @@ export function Search() {
   const theme = useTheme();
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { search } = useSelector((state: RootState) => state.book);
+  const { search, loading } = useSelector((state: RootState) => state.book);
 
   useEffect(() => {
     if (searchText) {
@@ -107,6 +108,10 @@ export function Search() {
     );
   }
 
+  function LoadingBooks() {
+    return <ActivityIndicatorBooks />;
+  }
+
   return (
     <Wrapper>
       <Header>
@@ -124,8 +129,11 @@ export function Search() {
           value={searchText}
           onChangeText={setSearchText}
         />
-
-        {search.books.length > 0 ? BooksResult() : RecommendedCategories()}
+        {loading
+          ? LoadingBooks()
+          : search.books.length > 0
+          ? BooksResult()
+          : RecommendedCategories()}
 
         {/* <Subtitle style={{ paddingTop: 16 }}>Latest Search</Subtitle> */}
         {/* <ListBook

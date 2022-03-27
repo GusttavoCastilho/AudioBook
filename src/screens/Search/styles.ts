@@ -52,3 +52,9 @@ export const ListBook = styled.FlatList.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })``;
+
+export const ActivityIndicatorBooks = styled.ActivityIndicator.attrs({
+  color: "#261C96",
+})`
+  margin-top: 20px;
+`;
