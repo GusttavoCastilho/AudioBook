@@ -3,6 +3,7 @@ export type BooksState = {
   error: Error | string | null;
   search: {
     text: string;
+    category: string;
     books: Books[];
   };
 };

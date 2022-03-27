@@ -25,8 +25,8 @@ export const recommendedCategories = [
   },
   {
     id: 2,
-    type: "personal",
-    title: "Personal",
+    type: "medical",
+    title: "Medical",
   },
   {
     id: 3,

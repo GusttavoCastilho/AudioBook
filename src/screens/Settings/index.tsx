@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useTheme } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { ButtonSettings } from "@components/ButtonSettings";
 import { Button } from "@components/Button";
@@ -25,14 +26,17 @@ import {
 
 export function Settings() {
   const theme = useTheme();
+  const navigation = useNavigation();
   return (
     <Wrapper>
       <Header>
-        <Ionicons
-          name="chevron-back"
-          size={24}
-          color={theme.colors.neutral_80}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons
+            name="chevron-back"
+            size={24}
+            color={theme.colors.neutral_80}
+          />
+        </TouchableOpacity>
         <Title>Settings</Title>
       </Header>
 
@@ -40,7 +44,7 @@ export function Settings() {
         <ImageProfile source={UserImg} />
         <Content>
           <Username>John Doe</Username>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <TextButton>View Profile</TextButton>
           </TouchableOpacity>
         </Content>
