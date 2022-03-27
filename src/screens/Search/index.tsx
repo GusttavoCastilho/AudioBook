@@ -10,7 +10,11 @@ import { ButtonCategory } from "@components/ButtonCategory";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@store/index";
-import { searchRequestBook, getRequestCategory } from "@store/book/reducers";
+import {
+  searchRequestBook,
+  getRequestCategory,
+  resetBooks,
+} from "@store/book/reducers";
 import { Books } from "@store/book/types";
 
 import { useNavigation } from "@react-navigation/native";
@@ -22,13 +26,16 @@ import { getCategoryIcon } from "@utils/getCategoryIcon";
 
 import {
   ActivityIndicatorBooks,
-  Wrapper,
-  Header,
-  Content,
-  Title,
-  Subtitle,
-  ListBook,
+  ButtonClear,
+  ButtonTextClear,
   Category,
+  Content,
+  Header,
+  ListBook,
+  Subtitle,
+  Title,
+  Wrapper,
+  WrapperClearButton,
 } from "./styles";
 
 type BookProps = {
@@ -64,10 +71,19 @@ export function Search() {
     dispatch(getRequestCategory(category));
   }, []);
 
+  const handleClearBooks = useCallback(() => {
+    dispatch(resetBooks());
+  }, []);
+
   function BooksResult() {
     return (
       <>
-        <Subtitle>Search Results</Subtitle>
+        <WrapperClearButton>
+          <Subtitle>Search Results</Subtitle>
+          <ButtonClear onPress={handleClearBooks}>
+            <ButtonTextClear>Clear</ButtonTextClear>
+          </ButtonClear>
+        </WrapperClearButton>
         <FlatList
           data={search.books}
           keyExtractor={(item: Books) => item.id}

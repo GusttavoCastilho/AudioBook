@@ -44,6 +44,13 @@ const bookSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    resetBooks: (state: BooksState): void => {
+      state.loading = false;
+      state.error = "";
+      state.search.books = [];
+      state.search.category = "";
+      state.search.text = "";
+    },
   },
 });
 
@@ -54,6 +61,7 @@ export const {
   getRequestCategory,
   getSuccessCategory,
   getFailureCategory,
+  resetBooks,
 } = bookSlice.actions;
 
 export default bookSlice.reducer;

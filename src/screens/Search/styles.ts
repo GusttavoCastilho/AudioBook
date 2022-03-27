@@ -42,6 +42,25 @@ export const Subtitle = styled.Text`
   `}
 `;
 
+export const WrapperClearButton = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ButtonClear = styled.TouchableOpacity``;
+
+export const ButtonTextClear = styled.Text`
+  font-size: 14px;
+
+  ${({ theme }) => css`
+    font-family: ${theme.fonts.medium};
+    color: ${theme.colors.primary_50};
+  `}
+`;
+
 export const Category = styled.View`
   width: 100%;
   flex-direction: row;
