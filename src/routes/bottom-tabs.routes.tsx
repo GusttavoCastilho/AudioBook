@@ -8,9 +8,8 @@ import { Library } from "@screens/Library";
 
 import { useTheme } from "styled-components/native";
 
-import HomeSvg from "@assets/home.svg";
-import SearchSvg from "@assets/search.svg";
-import LibrarySvg from "@assets/library.svg";
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -33,21 +32,36 @@ export function BottomTabs() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <HomeSvg />,
+          tabBarIcon: (props) => (
+            <AntDesign name="home" size={24} color={props.color} />
+          ),
         }}
       />
       <Screen
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: () => <SearchSvg />,
+          tabBarIcon: (props) => (
+            <AntDesign
+              name="search1"
+              size={24}
+              color={props.color}
+              fill={props.color}
+            />
+          ),
         }}
       />
       <Screen
         name="Library"
         component={Library}
         options={{
-          tabBarIcon: () => <LibrarySvg />,
+          tabBarIcon: (props) => (
+            <Ionicons
+              name="document-text-outline"
+              size={24}
+              color={props.color}
+            />
+          ),
         }}
       />
     </Navigator>
