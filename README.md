@@ -24,6 +24,7 @@
 <li><a href="https://firebase.google.com/?hl=pt">Firebase</a></li>
 
 <h2>Installing and running the project 🎲</h2>
+
 ```bash
 # Clone este repositório
 $ git clone https://github.com/GusttavoCastilho/AudioBook
