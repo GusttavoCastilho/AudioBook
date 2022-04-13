@@ -75,6 +75,7 @@ export function BookDetails() {
             <Button
               label="Play Audio"
               style={{ width: "48%", marginRight: 15 }}
+              onPress={() => navigation.navigate("Player")}
             />
             <Button label="Read Book" border style={{ width: "48%" }} />
           </WrapperButton>

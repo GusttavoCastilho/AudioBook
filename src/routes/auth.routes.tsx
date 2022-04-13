@@ -5,6 +5,7 @@ import { BottomTabs } from "./bottom-tabs.routes";
 import { Settings } from "@screens/Settings";
 import { Profile } from "@screens/Profile";
 import { BookDetails } from "@screens/BookDetails";
+import { Player } from "@screens/Player";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export function AuthRoutes() {
       <Screen name="Settings" component={Settings} />
       <Screen name="Profile" component={Profile} />
       <Screen name="BookDetails" component={BookDetails} />
+      <Screen name="Player" component={Player} />
     </Navigator>
   );
 }

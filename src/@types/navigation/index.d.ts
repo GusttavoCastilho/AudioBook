@@ -21,6 +21,7 @@ export declare global {
       Settings: undefined;
       Profile: undefined;
       BookDetails: Books;
+      Player: undefined;
     }
   }
 }
