@@ -42,6 +42,7 @@ export function Player() {
   const [sound, setSound] = useState<Audio.Sound>();
   const [playingStatus, setPlayingStatus] = useState("nosound");
   const [playing, setPlaying] = useState(false);
+  const [noSound, setNoSound] = useState(false);
   const navigation = useNavigation();
   const theme = useTheme();
 
@@ -93,6 +94,20 @@ export function Player() {
     }
   };
 
+  const alterVolumePlayer = async () => {
+    const status = await sound?.getStatusAsync();
+    if (status?.isLoaded) {
+      if (status.volume == 1) {
+        await sound?.setVolumeAsync(0);
+        setNoSound(true);
+      } else {
+        await sound?.setVolumeAsync(1);
+        setNoSound(false);
+      }
+    }
+    console.log(status);
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -130,8 +145,16 @@ export function Player() {
         </Timeline>
 
         <BoxButton>
-          <ButtonSound>
-            <SoundSvg />
+          <ButtonSound onPress={alterVolumePlayer}>
+            {noSound ? (
+              <Ionicons
+                name="volume-mute-outline"
+                size={24}
+                color={theme.colors.neutral_80}
+              />
+            ) : (
+              <SoundSvg />
+            )}
           </ButtonSound>
           <ButtonLastAndNext>
             <ArrowLeftSvg />
