@@ -59,7 +59,7 @@ export function Search() {
   const theme = useTheme();
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { search, loading } = useSelector((state: RootState) => state.book);
+  const { books, loading } = useSelector((state: RootState) => state.book);
 
   useEffect(() => {
     if (searchText) {
@@ -85,7 +85,7 @@ export function Search() {
           </ButtonClear>
         </WrapperClearButton>
         <FlatList
-          data={search.books}
+          data={books}
           keyExtractor={(item: Books) => item.id}
           numColumns={2}
           showsVerticalScrollIndicator={false}
@@ -147,7 +147,7 @@ export function Search() {
         />
         {loading
           ? LoadingBooks()
-          : search.books.length > 0
+          : books.length > 0
           ? BooksResult()
           : RecommendedCategories()}
 

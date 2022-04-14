@@ -1,8 +1,6 @@
-import { call, put, takeLatest, select } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
 import api from "@services/api";
-
-import { RootState } from "..";
 
 import {
   searchFailureBook,
@@ -13,13 +11,12 @@ import {
   getFailureCategory,
 } from "./reducers";
 
-function* searchBooks() {
-  const { search } = yield select((state: RootState) => state.book);
+function* searchBooks({ payload }: ReturnType<typeof searchRequestBook>) {
   try {
-    if (search.text.length > 0) {
+    if (payload && payload.length > 0) {
       const { data }: AxiosResponse = yield call(
         api.get,
-        `/books/v1/volumes?q=${search.text}&key=AIzaSyCFVWZVioPcpoRewg61iGYM5pq-QyrdMmw`
+        `/books/v1/volumes?q=${payload}&key=AIzaSyCFVWZVioPcpoRewg61iGYM5pq-QyrdMmw`
       );
 
       if (data) {
@@ -31,12 +28,11 @@ function* searchBooks() {
   }
 }
 
-function* recommendedCategoryBooks() {
+function* recommendedCategoryBooks({ payload }: ReturnType<typeof getRequestCategory>) {
   try {
-    const { search } = yield select((state: RootState) => state.book);
     const { data }: AxiosResponse = yield call(
       api.get,
-      `/books/v1/volumes?q=subject:${search.category}&key=AIzaSyCFVWZVioPcpoRewg61iGYM5pq-QyrdMmw`
+      `/books/v1/volumes?q=subject:${payload}&key=AIzaSyCFVWZVioPcpoRewg61iGYM5pq-QyrdMmw`
     );
 
     if (data) {

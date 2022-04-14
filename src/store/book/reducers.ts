@@ -5,40 +5,35 @@ import { BooksState } from "./types";
 const initialState: BooksState = {
   loading: false,
   error: null,
-  search: {
-    text: "",
-    category: "",
-    books: [],
-  },
+  books: [],
+  category: "",
 };
 
 const bookSlice = createSlice({
   name: "book",
   initialState,
   reducers: {
-    searchRequestBook: (state: BooksState, { payload }): void => {
+    searchRequestBook: (state: BooksState, _): void => {
       state.loading = true;
-      state.search.text = payload;
       state.error = null;
     },
     searchSuccessBook: (state: BooksState, { payload }): void => {
       state.loading = false;
       state.error = null;
-      state.search.books = payload.books;
+      state.books = payload.books;
     },
     searchFailureBook: (state: BooksState, { payload }): void => {
       state.loading = false;
       state.error = payload;
     },
-    getRequestCategory: (state: BooksState, { payload }): void => {
+    getRequestCategory: (state: BooksState, _): void => {
       state.loading = true;
-      state.search.category = payload;
       state.error = null;
     },
     getSuccessCategory: (state: BooksState, { payload }): void => {
       state.loading = false;
       state.error = null;
-      state.search.books = payload.books;
+      state.books = payload.books;
     },
     getFailureCategory: (state: BooksState, { payload }): void => {
       state.loading = false;
@@ -47,9 +42,8 @@ const bookSlice = createSlice({
     resetBooks: (state: BooksState): void => {
       state.loading = false;
       state.error = "";
-      state.search.books = [];
-      state.search.category = "";
-      state.search.text = "";
+      state.books = [];
+      state.category = "";
     },
   },
 });

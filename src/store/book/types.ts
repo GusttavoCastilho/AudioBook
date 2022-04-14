@@ -1,11 +1,8 @@
 export type BooksState = {
   loading: boolean;
   error: Error | string | null;
-  search: {
-    text: string;
-    category: string;
-    books: Books[];
-  };
+  category: string;
+  books: Books[];
 };
 
 export type Books = {
