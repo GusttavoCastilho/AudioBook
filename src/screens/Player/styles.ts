@@ -66,36 +66,6 @@ export const Timeline = styled.View`
   margin-top: 32px;
 `;
 
-export const LineContainer = styled.View`
-  width: 100%;
-  height: 2px;
-
-  flex-direction: row;
-
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.primary_10};
-`;
-
-export const LineProgress = styled.View`
-  width: 30%;
-  height: 2px;
-
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.primary_50};
-
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-export const Dot = styled.View`
-  width: 8px;
-  height: 8px;
-
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.primary_50};
-`;
-
 export const BoxTime = styled.View`
   width: 100%;
 
@@ -120,6 +90,8 @@ export const BoxButton = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  margin-top: 30px;
 `;
 
 export const ButtonSound = styled.TouchableOpacity``;

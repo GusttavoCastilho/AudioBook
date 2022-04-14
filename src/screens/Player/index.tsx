@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { TouchableOpacity, View, Button } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
+
+import Slider from "@react-native-community/slider";
 
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
@@ -18,9 +20,6 @@ import {
   TitleBook,
   AuthorBook,
   Timeline,
-  LineContainer,
-  LineProgress,
-  Dot,
   Time,
   BoxTime,
   BoxButton,
@@ -38,11 +37,16 @@ import PlaySvg from "@assets/play-bold.svg";
 import UploadSvg from "@assets/upload.svg";
 import PauseSvg from "@assets/pause.svg";
 
+import { convertTime, getMMSSFromMillis } from "@utils/helper";
+
 export function Player() {
   const [sound, setSound] = useState<Audio.Sound>();
   const [playingStatus, setPlayingStatus] = useState("nosound");
   const [playing, setPlaying] = useState(false);
   const [noSound, setNoSound] = useState(false);
+  const [status, setStatus] = useState<AVPlaybackStatus>(
+    {} as AVPlaybackStatus
+  );
   const navigation = useNavigation();
   const theme = useTheme();
 
@@ -62,6 +66,7 @@ export function Player() {
 
   const soundStatus = (status: AVPlaybackStatus): void => {
     if (status.isLoaded) {
+      setStatus(status);
       if (status.isPlaying && playingStatus !== "playing") {
         setPlayingStatus("playing");
       } else if (!status.isPlaying && playingStatus === "playing") {
@@ -105,7 +110,24 @@ export function Player() {
         setNoSound(false);
       }
     }
-    console.log(status);
+  };
+
+  const calculateSliderBar = () => {
+    if (status.isLoaded && status.durationMillis) {
+      return status.positionMillis / status.durationMillis;
+    }
+  };
+
+  const renderInitialTime = () => {
+    if (status?.isLoaded && status.positionMillis) {
+      return getMMSSFromMillis(status.positionMillis);
+    }
+  };
+
+  const renderCurrentTime = () => {
+    if (status?.isLoaded && status.durationMillis) {
+      return convertTime(status.durationMillis / 1000);
+    }
   };
 
   return (
@@ -130,19 +152,6 @@ export function Player() {
         <BookImage source={HarryPotterImage} />
         <TitleBook>Harry Potter and the Prison...</TitleBook>
         <AuthorBook>J.K. Rowling</AuthorBook>
-
-        <Timeline>
-          <LineContainer>
-            <LineProgress>
-              <Dot />
-            </LineProgress>
-          </LineContainer>
-
-          <BoxTime>
-            <Time>12:15</Time>
-            <Time>47:32</Time>
-          </BoxTime>
-        </Timeline>
 
         <BoxButton>
           <ButtonSound onPress={alterVolumePlayer}>
@@ -169,6 +178,28 @@ export function Player() {
             <UploadSvg />
           </ButtonUpload>
         </BoxButton>
+
+        <Timeline>
+          <Slider
+            style={{
+              height: 2,
+            }}
+            minimumValue={0}
+            maximumValue={1}
+            value={calculateSliderBar()}
+            minimumTrackTintColor={theme.colors.primary_50}
+            maximumTrackTintColor={theme.colors.primary_10}
+            thumbTintColor={theme.colors.primary_50}
+            onValueChange={(value) => {
+              convertTime(value);
+            }}
+          />
+
+          <BoxTime>
+            <Time>{renderInitialTime()}</Time>
+            <Time>{renderCurrentTime()}</Time>
+          </BoxTime>
+        </Timeline>
       </Content>
     </Wrapper>
   );
