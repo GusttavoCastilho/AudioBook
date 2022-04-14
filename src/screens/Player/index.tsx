@@ -153,6 +153,28 @@ export function Player() {
         <TitleBook>Harry Potter and the Prison...</TitleBook>
         <AuthorBook>J.K. Rowling</AuthorBook>
 
+        <Timeline>
+          <Slider
+            style={{
+              height: 2,
+            }}
+            minimumValue={0}
+            maximumValue={1}
+            value={calculateSliderBar()}
+            minimumTrackTintColor={theme.colors.primary_50}
+            maximumTrackTintColor={theme.colors.primary_10}
+            thumbTintColor={theme.colors.primary_50}
+            onValueChange={(value) => {
+              convertTime(value);
+            }}
+          />
+
+          <BoxTime>
+            <Time>{renderInitialTime()}</Time>
+            <Time>{renderCurrentTime()}</Time>
+          </BoxTime>
+        </Timeline>
+
         <BoxButton>
           <ButtonSound onPress={alterVolumePlayer}>
             {noSound ? (
@@ -178,28 +200,6 @@ export function Player() {
             <UploadSvg />
           </ButtonUpload>
         </BoxButton>
-
-        <Timeline>
-          <Slider
-            style={{
-              height: 2,
-            }}
-            minimumValue={0}
-            maximumValue={1}
-            value={calculateSliderBar()}
-            minimumTrackTintColor={theme.colors.primary_50}
-            maximumTrackTintColor={theme.colors.primary_10}
-            thumbTintColor={theme.colors.primary_50}
-            onValueChange={(value) => {
-              convertTime(value);
-            }}
-          />
-
-          <BoxTime>
-            <Time>{renderInitialTime()}</Time>
-            <Time>{renderCurrentTime()}</Time>
-          </BoxTime>
-        </Timeline>
       </Content>
     </Wrapper>
   );
