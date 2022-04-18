@@ -62,6 +62,10 @@ export function Search() {
   const { books, loading } = useSelector((state: RootState) => state.book);
 
   useEffect(() => {
+    dispatch(resetBooks());
+  }, []);
+
+  useEffect(() => {
     if (searchText) {
       dispatch(searchRequestBook(searchText));
     }
