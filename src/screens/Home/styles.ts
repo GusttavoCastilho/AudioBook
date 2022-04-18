@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native'
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
-import { BannerProps } from '.'
+import { BannerProps, CategoryProps } from '.'
 
 export const Wrapper = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -49,7 +49,7 @@ export const TextSeeMore = styled.Text`
   `}
 `;
 
-export const CategoriesList = styled.FlatList.attrs({
+export const CategoriesList = styled(FlatList as new () => FlatList<CategoryProps>).attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
 })`
@@ -69,4 +69,10 @@ export const BannerBook = styled.Image`
   height: 300px;
 
   margin-right: 16px;
+`;
+
+export const ActivityIndicatorBooks = styled.ActivityIndicator.attrs({
+  color: "#261C96",
+})`
+  margin-top: 20px;
 `;
